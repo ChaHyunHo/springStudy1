@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- DB 결과값 필드명 '_'를 카멜형식으로 변환 -->
+		 <setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+</configuration>
