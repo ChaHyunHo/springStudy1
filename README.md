@@ -182,7 +182,7 @@ String[] appCtxs =
 	빈(Bean)객체를 정의할 때 scope속성을 명시해 주면 된다.
 	
 프로토타입 ex)
-프로토타입은 싱글톤과는 달리 객체를 만들어서 참조하는 형태
+프로토타입은 싱글톤과는 달리 객체를 각각 만들어서 참조하는 형태
 ```
 <bean id="injectionBean" class="scope.ex.InjectionBean" />
 
@@ -213,5 +213,12 @@ String[] appCtxs =
 		
 		// 결과는 dependencyBean1 != dependencyBean2
 ```
-   
+ 
+ # 의존객체 자동 주입
+ 
+ 	의존 객체 자동 주입이란?
+ 	스프링 설정 파일에서 의존 객체를 주입할 때 <constructor-arg> 또는 <property> 태그로 의존 대상 객체를 명시하지 않아도
+ 	스프링 컨테이너가 자동으로 필요한 의존 대상 객체를 찾아서 의존 대상 객체가 필요한 객체에 주입해 주는 기능이다.
+ 	구현 방법은 @Autowired와 @Resource 어노테이션을 이용해서 쉽게 구현할 수 있다.
+ 
     
