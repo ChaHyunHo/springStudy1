@@ -1,22 +1,22 @@
 package com.word.service;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.word.WordSet;
 import com.word.dao.WordDao;
 
+
 public class WordRegisterService {
 	
-	@Resource(name = "wordDao")
+	@Autowired
+	@Qualifier("usedDao")
 	private WordDao wordDao;
 	
 	public WordRegisterService() {
 		
 	}
 	
-	@Autowired
 	public WordRegisterService(WordDao wordDao) {
 		this.wordDao = wordDao;
 	}
@@ -34,8 +34,7 @@ public class WordRegisterService {
 		WordSet wordSet = wordDao.select(wordKey);
 		return wordSet == null ? true : false;
 	}
-	
-	@Autowired
+
 	public void setWordDao(WordDao wordDao) {
 		this.wordDao = wordDao;
 	}

@@ -8,7 +8,12 @@
 	<!-- 어노테이션 사용시 선언  -->
 	<context:annotation-config />
 	
-	<bean id="wordDao" class="com.word.dao.WordDao" />
+	<bean id="wordDao1" class="com.word.dao.WordDao" >
+		<qualifier value="usedDao" />
+	</bean>
+	<bean id="wordDao2" class="com.word.dao.WordDao" />
+	<bean id="wordDao3" class="com.word.dao.WordDao" />
+	
 	
 	<bean id="registerService" class="com.word.service.WordRegisterService" >
 		<!-- <constructor-arg ref="wordDao" /> --> <!-- 생성자를 통한 의존주입 어노테이션 선언시 생략   -->
