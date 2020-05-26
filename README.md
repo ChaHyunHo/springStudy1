@@ -278,5 +278,17 @@ String[] appCtxs =
 
 }
 ```
+
+ #### @Resource
+ 	주입하려고 하는 객체의 이름이 일치하는 객체를 자동으로 주입한다. 
+ 	(@Autowired와 기능은 동일하지만 이름으로 찾는게 가장 큰특징)
+ 	
+ ```
+	@Resource    // 객체의 타입을 보지않고 이름으로 찾는다.
+	private WordDao wordDao;
+	
+	
+	<bean id="wordDao" class="com.word.dao.WordDao" />
+ ```
  
     
