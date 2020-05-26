@@ -7,6 +7,7 @@ import com.word.service.WordSearchService;
 
 /**
  * word 패키지는 자동주입에 대한 학습내용이다.
+ * @Autowired , @Resource 어노테이션의 각 특징을 알아보고 어떻게 사용하는지 알 수 있다.
  * @author chamy
  *
  */
