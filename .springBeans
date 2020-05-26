@@ -11,6 +11,7 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/springmvc/servlet-context.xml</config>
+		<config>src/main/resources/spring/context-mapper.xml</config>
 		<config>src/main/resources/spring/context-common.xml</config>
 	</autoconfigs>
 	<configSets>
