@@ -221,4 +221,55 @@ String[] appCtxs =
  	스프링 컨테이너가 자동으로 필요한 의존 대상 객체를 찾아서 의존 대상 객체가 필요한 객체에 주입해 주는 기능이다.
  	구현 방법은 @Autowired와 @Resource 어노테이션을 이용해서 쉽게 구현할 수 있다.
  
+ ```
+ 	<!-- 어노테이션 사용시 선언  -->
+	<context:annotation-config />
+	
+	<bean id="wordDao" class="com.word.dao.WordDao" />
+	
+	<bean id="registerService" class="com.word.service.WordRegisterService" >
+		<!-- <constructor-arg ref="wordDao" /> --> <!-- 생성자를 통한 의존주입 어노테이션 선언시 생략   -->
+	</bean>
+	
+	<bean id="searchService" class="com.word.service.WordSearchService" >
+		<!-- <constructor-arg ref="wordDao" /> -->
+	</bean>
+ ```
+ 	
+ #### @Autowired 어노테이션
+ 	주입하려고 하는 객체의 타입이 일치하는 객체를 자동으로 주입한다.
+ 	
+```
+	public class WordRegisterService {
+	
+	@Autowired    // 프로퍼티에 주입을 한경우
+	private WordDao wordDao;
+	
+	@Autowired   // 생성자를 통해 주입을 한경우
+	public WordRegisterService(WordDao wordDao) {
+		this.wordDao = wordDao;
+	}
+	
+	public void register(WordSet wordSet) {
+		String wordKey = wordSet.getWordKey();
+		if(verify(wordKey)) {
+			wordDao.insert(wordSet);
+		} else {
+			System.out.println("The word has already registered.");
+		}
+	}
+	
+	public boolean verify(String wordKey){
+		WordSet wordSet = wordDao.select(wordKey);
+		return wordSet == null ? true : false;
+	}
+	
+	@Autowired   // setter을 통해 주입한경우
+	public void setWordDao(WordDao wordDao) {
+		this.wordDao = wordDao;
+	}
+
+}
+```
+ 
     
