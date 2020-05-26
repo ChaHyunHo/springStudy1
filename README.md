@@ -364,6 +364,21 @@ ex)
 	<bean id="wordDao3" class="com.word.dao.WordDao" />
 ```	
 	
+	
+# 생명주기(Life Cycle)
+
+#### 스프링 컨테이너 생명주기
+
+	1. GenericXmlApplicationContext를 이요한 스프링 컨테이너 초기화(생성)
+		```
+		GenericXmlApplicationContext ctx = 
+				new GenericXmlApplicationContext("classpath*:spring/context-common.xml");
+		```
+
+#### 빈(Bean)객체 생명주기
+
+
+#### init-method, destroy-method 속성
 
 
     
