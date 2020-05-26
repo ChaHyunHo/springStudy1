@@ -309,4 +309,31 @@ String[] appCtxs =
 # 의존객체 선택 
 	다수의 빈(Bean)객체 중 의존 객체의 대상이 되는 객체를 선택하는 방법
 
+#### 의존객체 선택	
+
+	스프링 컨테이너에서 동인한 객체가 2개 이상인 경우 스프링 컨테이너는 
+	자동 주입 대상 객체를 판단하지 못해서 Exception을 발생시킨다.
+	
+ex)
+```
+	<bean id="wordDao1" class="com.word.dao.WordDao" >
+		<qualifier value="usedDao" />
+	</bean>
+	<bean id="wordDao2" class="com.word.dao.WordDao" />
+	<bean id="wordDao3" class="com.word.dao.WordDao" />
+	
+	@Aotowired
+	@Qualifier("usedDao")  //<-- 동일한 타입의 객체가 존재할 경우 
+	private WordDao wordDao;
+	
+	
+```
+	// Exception의 내용은 다음과 같다.
+	Exception in thread "main" org.springframework.beans.factory.UnsatisfiedDependencyException: 
+	Error creating bean with name 'registerService' defined in URL [file:/C:/spring-tool-suite-4-4.5.1.RELEASE-e4.14.0-win32.win32.x86_64.self-extracting/sts-4.5.1.RELEASE/workspace/camelstudy/target/classes/spring/context-word.xml]: Unsatisfied dependency expressed through constructor parameter 0; 
+	nested exception is org.springframework.beans.factory.NoUniqueBeanDefinitionException: 
+	No qualifying bean of type 'com.word.dao.WordDao' available: expected single matching bean but found 3: wordDao1,wordDao2,wordDao3
+	
+
+
     
