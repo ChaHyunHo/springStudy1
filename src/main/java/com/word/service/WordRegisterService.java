@@ -1,5 +1,7 @@
 package com.word.service;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.word.WordSet;
@@ -7,8 +9,12 @@ import com.word.dao.WordDao;
 
 public class WordRegisterService {
 	
-	@Autowired
+	@Resource(name = "wordDao")
 	private WordDao wordDao;
+	
+	public WordRegisterService() {
+		
+	}
 	
 	@Autowired
 	public WordRegisterService(WordDao wordDao) {
