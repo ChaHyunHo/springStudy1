@@ -338,7 +338,7 @@ ex)
 	
 	
 ```
-	<!--	<bean id="wordDao" class="com.word.dao.WordDao" /> -->
+	<!-- <bean id="wordDao" class="com.word.dao.WordDao" /> -->
 	
 	@Autowired(required = false)
 	private WordDao wordDao;
@@ -351,6 +351,18 @@ ex)
 	@Autowired와 거의 비슷하게 @Inject 어노테이션을 이용해서 의존 객체를 자동으로 주입을 할 수 있다.
 	@Autowired와 차이점 이라면 @Autowired의 경우 required속성을 이용해서 의존 대상 객체가 없어도 익셉션을 피할 수 있지만,
 	@Inject의 경우 required속성을 지원하지 않는다.
+
+```	
+    @Inject
+	@Named("wordDao1")  //<-- 동일한 타입의 빈 객체가 존재할 경우 
+	private WordDao wordDao; // @Autowired와는 달리 'named'라는 어노테이션을 쓰고 
+	
+	<bean id="wordDao1" class="com.word.dao.WordDao" >
+	<!-- <qualifier value="usedDao" /> --> // @Qualifier는 사용하지 않는다.
+	</bean>
+	<bean id="wordDao2" class="com.word.dao.WordDao" />
+	<bean id="wordDao3" class="com.word.dao.WordDao" />
+```	
 	
 
 
