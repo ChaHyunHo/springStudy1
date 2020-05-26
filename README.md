@@ -239,11 +239,18 @@ String[] appCtxs =
  #### @Autowired 어노테이션
  	주입하려고 하는 객체의 타입이 일치하는 객체를 자동으로 주입한다.
  	
+ 	생성자에 @Autowired을 선언하여 사용할 수 있지만 프로퍼티나 메소드에 사용하기 위해서는
+ 	디폴트 생성자를 선언하여 사용해야한다.
+ 	
 ```
 	public class WordRegisterService {
 	
 	@Autowired    // 프로퍼티에 주입을 한경우
 	private WordDao wordDao;
+	
+	public WordRegisterService() { // 프로퍼티나 메소드에 @Autowired 사용시 디폴트 생성자를 선언하여 사용한다.
+	}							   // 프로퍼티나 메소드에 디폴트생성자가 필요한 이유는 프로퍼티나 메소드는 선언하기 이전에
+								   // 객체가 선언이 되어야 하기 때문이다.
 	
 	@Autowired   // 생성자를 통해 주입을 한경우
 	public WordRegisterService(WordDao wordDao) {
