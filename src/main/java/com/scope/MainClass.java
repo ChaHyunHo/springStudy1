@@ -7,10 +7,11 @@ import com.scope.ex.InjectionBean;
 
 /**
  * 현재 scope 패키지에 있는 코드는 프로토타입 패턴을 이용한 의존성주입을 공부하기 위한 코드이다.
+ * 설정 파일은 contenx-common.xml을 사용함.   
  * @author chamy
  *
  */
-public class MainClass {
+public class MainClass {  
 
 	public static void main(String[] args) {
 		GenericXmlApplicationContext ctx = 
