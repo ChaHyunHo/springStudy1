@@ -323,18 +323,29 @@ String[] appCtxs =
 ex)
 ```
 	<bean id="wordDao1" class="com.word.dao.WordDao" >
-		<qualifier value="usedDao" />
+		<qualifier value="usedDao" /> // @Qualifier과 동일한 value값을 정해주면 에러 x
 	</bean>
 	<bean id="wordDao2" class="com.word.dao.WordDao" />
 	<bean id="wordDao3" class="com.word.dao.WordDao" />
 	
-	@Aotowired
+	@Autowired
 	@Qualifier("usedDao")  //<-- 동일한 타입의 객체가 존재할 경우 
 	private WordDao wordDao;
+
+```
+
+#### 의존객체 자동 주입 체크
 	
 	
 ```
+	<!--	<bean id="wordDao" class="com.word.dao.WordDao" /> -->
 	
+	@Autowired(required = false)
+	private WordDao wordDao;
+	// @Autowired는 알맞은 데이터 타입을 찾아서 빈객체를 참조하게 되는데 위 같이 주석처리한경우
+	// 빈을 찾을 수 없는 익셉션이 발생하게 된다. 그럴경우 에러를 무시고 하고 싶다면 required = false를
+	// 하면되는데 이경우 빈이 없어도 무시하게된다. 그치만 그리 좋지 않은 방법이므로 지향할 필요성이 있다.
+```
 	
 
 
