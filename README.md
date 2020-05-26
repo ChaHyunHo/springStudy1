@@ -168,6 +168,7 @@ String[] appCtxs =
 	스프링 설정파일-> GenericXmlApplicationContext -> Spring Container -> 여러개의 빈(Bean)객체 -> getBean을 통한 참조로 빈(Bean)사용
 	getBean을 이용하여 스프링컨테이너의 빈을 가져오게되면 어디서 사용하던 같은 객체를 가져온다.
 	자바 코드를 이용하여 객체를 가져올때 new 키워드를 통해 객체를 생성한다.
+	
 	하지만 스프링은 GenericXmlApplicationContext클래스가 이미 스프링 컨테이너를 만들면서 등록된 빈객체를 생성했다.
 	여러곳에서 "A"라는 객체를 호출 해도 "A"객체 하나만 사용할 뿐이다. 
 
