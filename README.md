@@ -370,10 +370,29 @@ ex)
 #### 스프링 컨테이너 생명주기
 
 	1. GenericXmlApplicationContext를 이요한 스프링 컨테이너 초기화(생성)
-		```
+	
+		// 컨테이너가 생성되고 각각의 빈들은 
+		// 의존객체에 주입되어 사용된다.(즉 컨테이너의 생성시점과 빈들의 생성시점은 동일하다.)
 		GenericXmlApplicationContext ctx = 
 				new GenericXmlApplicationContext("classpath*:spring/context-common.xml");
-		```
+				
+				
+	2. getBean()를 이용한 빈(Bean)객체 이용
+		
+		InjectionBean injectionBean = 
+					ctx.getBean("injectionBean", InjectionBean.class);
+		
+		DependencyBean dependencyBean1 = 
+					ctx.getBean("dependencyBean", DependencyBean.class);
+		
+		DependencyBean dependencyBean2 = 
+					ctx.getBean("dependencyBean", DependencyBean.class);
+	
+	
+	3. close()를 이용한 스프링 컨테이너 종료
+	
+		ctx.close();
+		
 
 #### 빈(Bean)객체 생명주기
 
