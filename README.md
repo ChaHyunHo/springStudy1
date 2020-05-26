@@ -1,4 +1,6 @@
-# springstudy1
+# 목차 
+
+### 이클립스와 github(## 이클립스에서 터미널(git bash)과 github저장소 환경 셋팅방법)
 
 ## 이클립스에서 터미널(git bash)과 github저장소 환경 셋팅방법
 
