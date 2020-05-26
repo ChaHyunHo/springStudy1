@@ -1,7 +1,7 @@
 package com.word.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.word.WordSet;
 import com.word.dao.WordDao;
@@ -9,8 +9,8 @@ import com.word.dao.WordDao;
 
 public class WordRegisterService {
 	
-	@Autowired
-	@Qualifier("usedDao") // 동일한 빈객체의 구분을 할때 사용한다.
+	@Inject
+	@Named("wordDao1") // 동일한 빈객체의 구분을 할때 사용한다.
 	private WordDao wordDao;
 	 
 	public WordRegisterService() {
