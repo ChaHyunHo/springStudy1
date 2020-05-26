@@ -283,12 +283,27 @@ String[] appCtxs =
  	주입하려고 하는 객체의 이름이 일치하는 객체를 자동으로 주입한다. 
  	(@Autowired와 기능은 동일하지만 이름으로 찾는게 가장 큰특징)
  	
+ 	@Resource는 생성자에 사용할 수 없다.
+ 	프로퍼티 또는 메소드에 사용 가능하다.
+ 	
  ```
 	@Resource    // 객체의 타입을 보지않고 이름으로 찾는다.
 	private WordDao wordDao;
 	
 	
-	<bean id="wordDao" class="com.word.dao.WordDao" />
+	<bean id="=wordDao" class"com.word.dao.WordDao" /> // id <> 프로퍼티 이름
+	
+	
+	@Resource(name = "wordDao") // name을 이용해 명시적으로 사용할 수도 있다.
+	private WordDao wordDao;
+	
+	// javax에 어노테이션 패키지가 없다면(Resource어노테이션이 없음) 
+	<dependency>
+		<groupId>javax.annotation</groupId>
+		<artifactId>javax.annotation-api</artifactId>
+		<version>1.3.1</version>
+	</dependency>
+	// 메이븐 설정을 추가해주면된다.
  ```
  
     
