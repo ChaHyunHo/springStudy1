@@ -179,14 +179,32 @@ String[] appCtxs =
 #### 2. 프로토타입(Prototype)
 	싱글톤 범위와 반대의 개념도 있는데 이를 프로토타입(Prototype)범위라고 한다.
 	프로토타입의 경우 개발자는 별도로 설정을 해줘야 하는데, 스프링 설정 파일에서 
-	빈(Bean)객체를 정의할 대 scope속성을 명시해 주면 된다.
+	빈(Bean)객체를 정의할 때 scope속성을 명시해 주면 된다.
 	
 프로토타입 ex)
+프로토타입은 싱글톤과는 달리 객체를 만들어서 참조하는 형태
 ```
+<bean id="injectionBean" class="scope.ex.InjectionBean" />
+
 <bean id="dependencyBean" class="sope.ex.DependencyBean" scope="prototype">
 	<constructor-arg ref="injectionBean" />
 	<property name="injectionBean" ref="injectionBean" />
 </bean>
+```
+
+프로토타입으로 의존받고있는 클래스 형태
+```
+public class DependencyBean {
+	private InjectionBean injectionBean;
+	
+	public DependencyBean(InjectionBean injectionBean) {
+		this.injectionBean = injectionBean;
+	}
+	
+	public void setInjectionBean(InjectionBean injectionBean) {
+		this.injectionBean = injectionBean;
+	}
+}
 ```
    
     
