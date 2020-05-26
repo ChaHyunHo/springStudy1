@@ -186,7 +186,7 @@ String[] appCtxs =
 ```
 <bean id="injectionBean" class="scope.ex.InjectionBean" />
 
-<bean id="dependencyBean" class="sope.ex.DependencyBean" scope="prototype">
+<bean id="dependencyBean" class="sope.ex.DependencyBean" scope="prototype"> // scpoe="prototype"만 작성해주면 프로토타입이됨
 	<constructor-arg ref="injectionBean" />
 	<property name="injectionBean" ref="injectionBean" />
 </bean>
@@ -194,17 +194,24 @@ String[] appCtxs =
 
 프로토타입으로 의존받고있는 클래스 형태
 ```
-public class DependencyBean {
-	private InjectionBean injectionBean;
-	
-	public DependencyBean(InjectionBean injectionBean) {
-		this.injectionBean = injectionBean;
-	}
-	
-	public void setInjectionBean(InjectionBean injectionBean) {
-		this.injectionBean = injectionBean;
-	}
-}
+	// 클래스 일부 
+	DependencyBean dependencyBean1 = 
+					ctx.getBean("dependencyBean", DependencyBean.class);
+		
+		DependencyBean dependencyBean2 = 
+				ctx.getBean("dependencyBean", DependencyBean.class);
+		
+		// dependenctBean =>  scope="prototype"으로 주게되면 싱글톤 패턴과 반대로 객체를 각각 만들어 준다. 
+		if(dependencyBean1.equals(dependencyBean2)) {
+			System.out.println("dependencyBean1 == dependencyBean2");
+		} else {
+			// 프로토타입 패턴이라면 각각 다른 객체로 표시된다. 
+			System.out.println("dependencyBean1 != dependencyBean2");
+		}
+		
+		ctx.close();
+		
+		// 결과는 dependencyBean1 != dependencyBean2
 ```
    
     
