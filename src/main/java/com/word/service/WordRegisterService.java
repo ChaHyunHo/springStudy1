@@ -10,7 +10,7 @@ import com.word.dao.WordDao;
 public class WordRegisterService {
 	
 	@Autowired
-	@Qualifier("usedDao")
+	@Qualifier("usedDao") // 동일한 빈객체의 구분을 할때 사용한다.
 	private WordDao wordDao;
 	
 	public WordRegisterService() {
