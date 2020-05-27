@@ -7,7 +7,8 @@
 	<context:annotation-config />
 	
 	<bean id="bookDao" class="com.brms.book.dao.BookDao" ></bean>
-	<bean id="bookRegisterService" class="com.brms.book.service.BookRegisterService" ></bean>
+	<bean id="bookRegisterService" class="com.brms.book.service.BookRegisterService"
+	init-method="initMethod" destroy-method="destroyMethod"  ></bean>
 	<bean id="bookSearchService" class="com.brms.book.service.BookSearchService"></bean>
 	
 	<bean id="memberDao" class="com.brms.member.dao.MemberDao" ></bean>
