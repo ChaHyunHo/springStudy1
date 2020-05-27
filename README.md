@@ -479,7 +479,7 @@ springStudy2에 이후 수업
 
 #### 웹 프로그래밍을 구축하기 위한 설계 모델
 
-<img src="/images/model.PNG" width="450px" height="300px" title="model1" alt="model1"></img><br/>
+<img src="images/model.PNG" width="450px" height="300px" title="model1" alt="model1"></img><br/>
 
 
 
