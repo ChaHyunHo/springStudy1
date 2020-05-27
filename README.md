@@ -447,6 +447,7 @@ ex) XML
 ```
 <bean id="bookRegisterService" class="com.brms.book.service.BookRegisterService"
 	init-method="initMethod" destroy-method="destroyMethod"  ></bean>
+	// 해당 빈에 속성의 이름이 메소드의 이름과 동일해야한다.
 
 ```
 ```
@@ -461,7 +462,7 @@ public class BookRegisterService {
 		bookDao.insert(book);
 	}
 	
-	public void initMethod() {
+	public void initMethod() { // 빈속성 이름과 동일 initMethod
 		System.out.println("BookRegisterService 빈(Bean)객체 생성 단계");
 	}
 	
