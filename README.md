@@ -479,9 +479,7 @@ springStudy2에 이후 수업
 
 #### 웹 프로그래밍을 구축하기 위한 설계 모델
 
-	1. Model1
-		브라우저  --->  WAS(웹 어플리케이션 서버)   ---> 데이터베이스
-	  (클라이언트)<---  (JSP <---> Service & DAO)   <---
+![Model1}(/images/model1.PNG)
 
 
 
