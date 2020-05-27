@@ -412,20 +412,20 @@ ex)
 
 ex)
 ```
-	public class BookRegisterService implements InitializingBean, DisposableBean {
-	// InitializingBean, DisposableBean 생성 및 소멸 시점에서의 특정작업을 할 수 있음
-	
+public class BookRegisterService implements InitializingBean, DisposableBean {
+// InitializingBean, DisposableBean 생성 및 소멸 시점에서의 특정작업을 할 수 있음
+
 	@Autowired
 	private BookDao bookDao;
 	
 	public BookRegisterService() { }
-
+	
 	@Override
 	public void afterPropertiesSet() throws Exception { // InitializingBean의 추상 메소드
 		System.out.println("Bean 객체 생성");
-
+	
 	}
-
+	
 	@Override
 	public void destroy() throws Exception { // DisposableBean의 추상 메소드
 		System.out.println("Bean 객체 소멸");
@@ -435,8 +435,43 @@ ex)
 
 ```
 
-
 #### init-method, destroy-method 속성
+
+위 경우 인터페이스를 이용하여 생성 및 소멸시점에 필요한 작업을 했지만 init-method 나 destroy-method
+경우 XML 설정 파일에 해당빈에서 선언하여 메소드 이름으로도 사용할 수 있다.
+
+init-method 속성을 이용하는 것과 인터페이스를 이용하는 것은 개발자의 취양에 따라 다르므로
+어떤것이 더 좋고 나쁜것은 없다. 자신이 맞는 쪽으로 사용하면 된다.
+
+ex) XML
+```
+<bean id="bookRegisterService" class="com.brms.book.service.BookRegisterService"
+	init-method="initMethod" destroy-method="destroyMethod"  ></bean>
+
+```
+```
+public class BookRegisterService {
+	
+	@Autowired
+	private BookDao bookDao;
+	
+	public BookRegisterService() { }
+	
+	public void register(Book book) {
+		bookDao.insert(book);
+	}
+	
+	public void initMethod() {
+		System.out.println("BookRegisterService 빈(Bean)객체 생성 단계");
+	}
+	
+	public void destroyMethod() {
+		System.out.println("BookRegisterService 빈(Bean)객체 소멸 단계");
+	}
+}
+```
+
+	
 
 
     
