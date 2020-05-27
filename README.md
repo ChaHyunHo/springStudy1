@@ -481,7 +481,12 @@ springStudy2에 이후 수업
 
 <img src="./images/model1.PNG" width="650px" height="350px" title="model1" alt="model1"></img><br/>
 
-	WAS에서 사용자로 부터 받은 요청을 하나에 JSP페이지를 통해 전부 처리해 버리는 형태이다.
+	WAS에서 사용자로 부터 받은 요청을 하나에 JSP(JAVA + <태그>)페이지를 통해 전부 처리해 버리는 형태이다.
+	하나의 페이지에 모든것을 할 수 있어서 개발속도가 빠르다. 하지만 코드가 복잡하고 유지보수 차원에서
+	좋지 않다.
+
+<img src="./images/model2.PNG" width="650px" height="350px" title="model1" alt="model1"></img><br/>
+		
 
 
 
