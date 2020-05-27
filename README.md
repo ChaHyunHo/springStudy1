@@ -281,7 +281,7 @@ String[] appCtxs =
 }
 ```
 
- #### @Resource
+ #### @Resource 어노테이션
  	주입하려고 하는 객체의 이름이 일치하는 객체를 자동으로 주입한다. 
  	(@Autowired와 기능은 동일하지만 이름으로 찾는게 가장 큰특징)
  	
@@ -393,7 +393,7 @@ ex)
 	
 	3. close()를 이용한 스프링 컨테이너 종료
 	
-		ctx.close();  // 스프링 컨테이너를 헤제하는 시점이 바로 소멸시점이다.(빈들도 자동으로 소멸된다.)
+		ctx.close();  // 스프링 컨테이너를 헤제하는 시점이 바로 소멸시점이다.(Bean들도 자동으로 소멸된다.)
 		
 
 #### 빈(Bean)객체 생명주기
@@ -403,6 +403,37 @@ ex)
 	스프링 컨테이너 종료 -> 빈(Bean)객체 소멸
 	
 	* 빈(Bean)객체의 생명주는 스프링 컨테이너의 생명주기와 같이 한다.
+	
+	<<interface>>
+	InitializingBean , DisposableBean
+	
+	빈(Bean)이 생성 및 소멸되는 시점에 특정한 작업을 하고싶을경우  InitializingBean , DisposableBean 인터페이를 이용한다.
+	주로 생성 및 소멸되는 시점에서 사용하게 되는 기능은 예로 DB인증이나 다른 PC에서의 인증절차 등으로 사용할 수 있다.
+
+ex)
+```
+	public class BookRegisterService implements InitializingBean, DisposableBean {
+	// InitializingBean, DisposableBean 생성 및 소멸 시점에서의 특정작업을 할 수 있음
+	
+	@Autowired
+	private BookDao bookDao;
+	
+	public BookRegisterService() { }
+
+	@Override
+	public void afterPropertiesSet() throws Exception { // InitializingBean의 추상 메소드
+		System.out.println("Bean 객체 생성");
+
+	}
+
+	@Override
+	public void destroy() throws Exception { // DisposableBean의 추상 메소드
+		System.out.println("Bean 객체 소멸");
+		
+	}
+}
+
+```
 
 
 #### init-method, destroy-method 속성
