@@ -497,8 +497,11 @@ springStudy2에 이후 수업
 
 <img src="./images/mvc.PNG" width="650px" height="350px" title="mvc" alt="mvc"></img><br/>
 * DispatcherServlet
-  * 클라이언트의 요청을 받으면 DispatcherServlet 객체가 받음
-  * HandlerMapping에게 요청을 던진다.
+  * 모든 연결을 담당한다
+  * 클라이언트의 요청을 받으면 DispatcherServlet 객체가 받는다.
+  * HandlerMapping에게 요청을 던지고 다시 받는다.
+  * HandlerAdapter에게 요청을 던지고 다시 받는다.
+  * HandlerAdapter를 통해 받은 Model 과 View를 ViewResolver 전달
 
 * HandlerMapping
   * 여러개의 Controller중에 요청에 맞는 적합한 것을 매핑해준다. 
@@ -506,7 +509,7 @@ springStudy2에 이후 수업
  
 * HandlerAdapter
   * HandlerAdapter는 HandlerMapping이 정해준 Controller 요청에 적합한 메소드를 매핑해준다. 
-  * 해당 메소드의 결과 값을 Model이라는 데이터로 가져온다.
+  * 해당 메소드의 결과 값을 Model과 View 데이터로 가져온다.
  
 * ViewResolver
   *  View 정보를 통해 알맞은 JSP 페이지로 응답을 생성해 클라이언트로 보내준다.
@@ -515,4 +518,6 @@ springStudy2에 이후 수업
   1. 요청받은 DispatcherServlet 객체는 해당 요청을 HandlerMapping에게 넘기고 HandlerMapping은 알맞은 요청 컨트롤러를 선택해준다.
   2. HandlerMapping과정이 끝나고 DispatcherServlet은 HandlerAdapter로 HandlerMapping이 정해준 Controller 요청에 적합한 메소드를 매핑해준 후 해당 메소드의 결과 값을 Model이라는 데이터로 가져온다. 
   3. HandlerAdapter를 통해 컨트롤러 요청 및 메소드 결과 Model과 View정보를 가지고 다시 DispatcherServlet으로 거쳐 ViewResolver에게 가는데 해당 View 정보를 통해 알맞은 JSP 페이지로 응답을 보내준다.  
-    
+  
+ 정리 요약 이미지
+ <img src="./images/mvc2.PNG" width="750px" height="550px" title="mvc2" alt="mvc2"></img><br/>  
