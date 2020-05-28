@@ -525,4 +525,30 @@ springStudy2에 이후 수업
  
  
 #### DispatcherServlet 설정
-	*web.xml에 서블릿을 매핑*
+	(사전 지식) web.xml 이란?
+	web.xml파일은 웹 어플리케이션의 배포 설명자로, 각 어플리케이션의 환경을 설정하는 역할을 한다.
+	서버가 처음 로딩될 때 읽어들이고, 해당 환경설정에 대해 tomcat에 적용하여 서버를 시작한다.
+	dispatcherServlet 설정, db설정과 같은 서브릿 설정에 대한 내용, listener, filter 설정 및 welcome file list, error page 처리,
+	mome type매핑, session 의 유효시간 설정, servlet context의 초기 파라미터 설정 등이 있다.
+	web.xml파일은 맨 처음 <web-app> 태그로 시작되고, xmlns 네임스페이스로 xml schema for java EE Deployment Descriptors 파일이 존재하는 위치를 선언해주고 있다.
+
+```
+web.xml에 서블릿을 매핑
+
+<servlet>
+	<servlet-name>appServlet</servlet-name> <!-- 서블릿 별칭 -->
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> <!-- 서블릿명(패키지 이름을 포함한 전체서블릿명) -->
+	<init-param>
+		<param-name>contextConfigLocation</param-name> 
+		<param-value>/WEB-INF/springmvc/servlet-context.xml</param-value>  <!-- 스프링 설정파일(스프링 컨테이너 생성) -->
+	</init-param>
+	<load-on-startup>1</load-on-startup>
+</servlet>
+	
+<servlet-mapping>
+	<servlet-name>appServlet</servlet-name> <!-- 서블릿 별칭 -->
+	<url-pattern>/</url-pattern> <!-- 맵핑명  -->
+	<!-- 클라이언트로 부터 받은 모든 요청은 '/'은 루트로 시작됨을 의미 -->
+</servlet-mapping>
+
+```
