@@ -484,7 +484,7 @@ springStudy2에 이후 수업
 	하나의 페이지에 모든것을 할 수 있어서 개발속도가 빠르다. 하지만 코드가 복잡하고 유지보수 차원에서
 	좋지 않다.
 
-<img src="./images/model2.PNG" width="650px" height="350px" title="model1" alt="model1"></img><br/>
+<img src="./images/model2.PNG" width="650px" height="350px" title="model2" alt="model2"></img><br/>
 	모델2 방식은 모델1의 단점을 보완하기 위해 나온 모델이다. WAS에서 사용자로 부터 받은 요청을 
 	Controller가 받게된다. Controller는 사용자의 요청에따라 어떤 서비스로 다음 작업을 할지에 대해
 	정해주는 역할을 한다. Service(비즈니스 로직)또한 기능별로 나뉘어 처리를 하게된다. DAO라는 모듈을 또 따로 만들었는데
@@ -494,6 +494,8 @@ springStudy2에 이후 수업
 	이러한 작업을 바탕으로 유지보수를 쉽게 할 수 있는 장점이있다.
 	
 #### 스프링에서 보는 MVC 설계 구조
+
+<img src="./images/mvc.PNG" width="650px" height="350px" title="mvc" alt="mvc"></img><br/>
 
 
     
