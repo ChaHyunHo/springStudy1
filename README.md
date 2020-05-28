@@ -520,4 +520,4 @@ springStudy2에 이후 수업
   3. HandlerAdapter를 통해 컨트롤러 요청 및 메소드 결과 Model과 View정보를 가지고 다시 DispatcherServlet으로 거쳐 ViewResolver에게 가는데 해당 View 정보를 통해 알맞은 JSP 페이지로 응답을 보내준다.  
   
  정리 요약 이미지
- <img src="./images/mvc2.PNG" width="750px" height="550px" title="mvc2" alt="mvc2"></img><br/>  
+ <img src="./images/mvc2.PNG" width="950px" height="650px" title="mvc2" alt="mvc2"></img><br/>  
