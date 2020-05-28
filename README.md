@@ -497,7 +497,15 @@ springStudy2에 이후 수업
 
 <img src="./images/mvc.PNG" width="650px" height="350px" title="mvc" alt="mvc"></img><br/>
 * DispatcherServlet
-  * 클라이언트의 요청을 받으면 해당객체가 받음
-    * 클라이언트의 요청을 받으면 해당객체가 받음
+  * 클라이언트의 요청을 받으면 DispatcherServlet 객체가 받음
+  * HandlerMapping에게 요청을 던진다.
+
+* HandlerMapping
+  * 여러개의 Controller중에 요청에 맞는 적합한 것을 선택해준다. 
+  
+  
+* 순서
+  1. 요청받은 DispatcherServlet 객체는 해당 요청을 HandlerMapping에게 넘기고 HandlerMapping은 알맞은 요청 컨트롤러를 선택해준다.
+  2. ㅇ
 
     
