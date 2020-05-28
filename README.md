@@ -521,3 +521,8 @@ springStudy2에 이후 수업
   
  정리 요약 이미지
  <img src="./images/mvc2.PNG" width="950px" height="650px" title="mvc2" alt="mvc2"></img><br/>  
+ 
+ 
+ 
+#### DispatcherServlet 설정
+	<b>web.xml에 서블릿을 매핑</b>
