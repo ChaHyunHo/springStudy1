@@ -525,4 +525,4 @@ springStudy2에 이후 수업
  
  
 #### DispatcherServlet 설정
-	**web.xml에 서블릿을 매핑**
+	*web.xml에 서블릿을 매핑*
