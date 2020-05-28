@@ -496,6 +496,7 @@ springStudy2에 이후 수업
 #### 스프링에서 보는 MVC 설계 구조
 
 <img src="./images/mvc.PNG" width="650px" height="350px" title="mvc" alt="mvc"></img><br/>
-
+	* DispatcherServlet
+		* 클라이언트의 요청을 받으면 해당객체가 받음
 
     
