@@ -552,3 +552,112 @@ web.xml에 서블릿을 매핑
 </servlet-mapping>
 
 ```
+
+1. 초기화 파리미터에서 지정한 파일(servlet-context.xml)을 이용해서 스프링 컨테이너를 생성(일반적인 방법)
+DispatcherServlet 스프링 설정파일(초기화 파라미터) ---> servlet-context.xml 이용한 스프링 컨테이너(HandlerMapping, HandlerAdapter, ViewResolver)
+
+2. 초기화 파라미터에서 스프링 설정 파일을 지정하지 않은 경우 서블릿별칭을 이용해서 스프링 컨테이너 생성
+스프링 설정파일 x
+
+
+#### Controller 객체
+	servlet-context.xml에 <annotation-driven />으로 어노테이션을 사용하겠다고 선언을 하고 해당 클래스에 @Controller 어노테이션을 추가해준다.
+	
+```
+@RequestMapping("/success") // 사용자로 부터 들어오는 맵핑 정보를 작성한다.
+public String success(Model model) { 
+ 	return "success";
+}
+
+model.setAttribute("tempData","model has data!!")
+
+* 개발자는 Model 객체에 데이터를 담아서 DispatcherServlet에 전달할 수 있다.
+* DispatcherServlet에 전달된 Model데이터는 View에서 가공되어 클라이언트한테 응답처리 한다.
+```
+
+
+#### view 객체
+
+
+```
+@RequestMapping("/success") 
+public String success(Model model) { 
+ 	return "success";
+}
+
+// ViewResolver를 통해 해당 JSP페이지로 이동시킬때 사용하는 설정
+<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:property name="prefix" value="/WEB-INF/views/" />
+	<beans:property name="suffix" value=".jsp" />
+	<beans:property name="order" value="2" />
+</beans:bean>
+
+JSP파일명 : /WEB-INF/views/success.jsp
+```
+
+스프링 MVC , Service, Dao 객체 구현, 컨트롤러 객체구현은 생략
+
+
+# 세션(Session), 쿠키(Cookie)
+
+	Connectionless Protocol
+	웹 서비스는 HTTP프로토콜을 기반으로 하는데, HTTP프로토콜은 클라이언트와 서버의 관계를 유지 하지 않는 특징이 있다.
+	관계를 유지 하지 않는 이유는 수많은 클라이언트의 요청 정보를 전부 유지하게 되면 부하가 걸리기 때문이다. 따라서 서버의
+	효율적인 운영을 위한것이다.
+	
+	클라이언트 ->요청(Request): 서버 연결 -> 서버
+	서버 -> 응답(Response): 서버 연결 해제 ->  클라이언트
+	
+	Connectionless Protocol
+	서버의 부하를 줄일 수 있는 장점은 있으나, 클라이언트의 요청 시마다 서버와 매번 새로운 연결이 생성되기 때문에 일반적인 로그인 상태 유지,
+	장바구니 등의 기능을 구현하기 어렵다. 이러한 Connectionless Protocol의 불편함을 해결하기 위해서 세션과 쿠키를 이용한다.
+	
+	세션과 쿠키는 클라이언트와 서버의 연결 상태를 유지해주는 방법으로, 세션은 서버에서 연결 정보를 관리하는 반면 쿠키는 클라이언트에서 연결 정보를
+	관리하는데 차이가 있다.
+	
+#### HttpSession을 이용 ex)
+```
+@RequestMapping(value = "/login", method = RequestMethod.POST)
+public String memLogin(Member member, HttpSession session) {
+	
+	Member mem = service.memberSearch(member);
+	
+	session.setAttribute("member", mem); // 세션에 추가하고 싶은 정보를 입력해준다.
+	
+	return "/member/loginOk";
+}
+```
+#### HttpServletRequest를 이용한 세션 사용 ex)
+```
+@RequestMapping(value = "/login", method = RequestMethod.POST)
+public String memLogin(Member member, HttpServletRequest request) {
+	
+	Member mem = service.memberSearch(member);
+	
+	HttpSession session = request.getSession();
+	session.setAttribute("member", mem);
+	
+	/*
+	session 메소드
+	
+	session.invalidate(); // 세션 객체의 모든 정보를 삭제  (로그아웃 ..)
+	
+	session.setMaxInactiveInterval(); // 세션 객체의 유지시간을 설정
+	
+	session.getMaxInactiveInterval(); // 세션 객체의 유지시간을 반환한다.
+	
+	session.getId() // 세션 ID를 반환 한다.
+	
+	session.setAttribute() // 세션 객체에 속성을 저장한다.
+	
+	session.getAttribute() // 세션 객체에 저장된 속성을 반환한다.
+	
+	session.removeAttribute() // 세션 객체에 저장된 속성을 제거한다.
+	*/
+	
+	return "/member/loginOk";
+}
+```
+HttpServletRequest, HttpSession의 차이점은 거의없다. 단지 세션객체를 얻는 방법에 차이가 있을뿐이다.
+	
+	
