@@ -659,5 +659,32 @@ public String memLogin(Member member, HttpServletRequest request) {
 }
 ```
 HttpServletRequest, HttpSession의 차이점은 거의없다. 단지 세션객체를 얻는 방법에 차이가 있을뿐이다.
+
+#### 쿠키(Cookie)
+```
+@RequestMapping("/main")
+public String mallMain(Mall mall, HttpServletResponse response) {
+	Cookie genderCookie = new Cookie("gender", mall.getGender());
 	
+	if(mall.isCookieDel()) {
+		genderCookie.setMaxAge(0);
+		mall.setGender(null);
+		} else {
+		 genderCookie.setMaxAge(60*60*24*30);
+		}
+		 response.addCookie(genderCookie);
+		 
+		 return "/mall/main";
+		} 
+```
+
+* mallMain() 에서 쿠키를 생성하고, 파라미터로 받은 HttpservletResponse에 쿠키를 담고 있다.
+
+* 쿠키를 생성할 때는 생성자에 두 개의 파라미터를 넣어주는데 첫 번째는 쿠키이름을 넣어 주고 두 번째는 쿠키값을 넣어 준다.
 	
+```
+public String mallIndex(Mall mall, @CookieValue(value="gender", require=false) Cookie genderCookie) {
+```
+@CookieValue 어노테이션의 value 속성은 쿠키 이름을 나타내는데 , 만약 value 에 명시한 쿠키가 없을 경우 익셉션이 발생한다
+익셉션을 막는 방법이 있는데 , 바로 required 속성이다 . Required 속성은 기본값으로 true 를 가지고 있는데 required 가 true 인 경우 value 값에 해당하는 쿠키가 없으면 익셉
+션이 발생한다 . 따라서 required 속성값을 false 로 설정해서 value 값에 해당하는 쿠키가 없어도 익셉션이 발생하지 않도록 한다
